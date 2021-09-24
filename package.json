@@ -1,0 +1,33 @@
+{
+  "name": "ecommerce-with-clear-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc:init": "tsc --init",
+    "build": "tsc",
+    "test": "tsc && jest dist/ --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandreservian/ecommerce-with-clear-architecture.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "clear-architecture",
+    "typescript"
+  ],
+  "author": "Alexandre Servian <alexandreservian@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexandreservian/ecommerce-with-clear-architecture/issues"
+  },
+  "homepage": "https://github.com/alexandreservian/ecommerce-with-clear-architecture#readme",
+  "dependencies": {
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.2.1"
+  }
+}
