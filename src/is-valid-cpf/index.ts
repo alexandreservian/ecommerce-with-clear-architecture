@@ -1,5 +1,7 @@
 import pipe from "../pipe";
 const LENGTH_CPF = 11;
+const FACTOR_FIRST_VERIFIER_DIGIT = 9;
+const FACTOR_SECOND_VERIFIER_DIGIT = 10;
 
 const hasElevenDigits = (cpf: string): [boolean, string] => {
   const check: boolean = cpf.length === LENGTH_CPF;
@@ -23,8 +25,13 @@ const isDontRepeatCpf = ([isValid, cpf]: [boolean, string]): [
   return [isDontRepeat, cpf];
 };
 
-const calculateCheckDigit = (firstDigits: string): number => {
+const extractVerifierDigits = (cpf: string) => {
+  return cpf.slice(9);
+};
+
+const calculateCheckDigit = (firstDigits: string, factor: number): number => {
   const sumOfAllDigits: number = firstDigits
+    .slice(0, factor)
     .split("")
     .reverse()
     .map((digit, index) => {
@@ -36,12 +43,14 @@ const calculateCheckDigit = (firstDigits: string): number => {
 };
 
 const validateCpf = (cpf: string): boolean => {
-  const [firstNineDigits, checkDigits] = cpf
-    .replace(/(\d{9})(\d{2})/gm, "$1-$2")
-    .split("-");
-  const firstDigit: number = calculateCheckDigit(firstNineDigits);
+  const checkDigits: string = extractVerifierDigits(cpf);
+  const firstDigit: number = calculateCheckDigit(
+    cpf,
+    FACTOR_FIRST_VERIFIER_DIGIT
+  );
   const secondDigit: number = calculateCheckDigit(
-    `${firstNineDigits}${firstDigit}`
+    cpf,
+    FACTOR_SECOND_VERIFIER_DIGIT
   );
 
   return checkDigits === `${firstDigit}${secondDigit}`;
