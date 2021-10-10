@@ -29,8 +29,8 @@ const extractVerifierDigits = (cpf: string) => {
   return cpf.slice(9);
 };
 
-const calculateCheckDigit = (firstDigits: string, factor: number): number => {
-  const sumOfAllDigits: number = firstDigits
+const calculateCheckDigit = (cpf: string, factor: number): number => {
+  const sumOfAllDigits: number = cpf
     .slice(0, factor)
     .split("")
     .reverse()
