@@ -14,7 +14,15 @@ class Order {
   }
 
   public addItem(item: Item, quantity: number): void {
-    this.orderItems.push(new OrderItem(item.id, item.price, quantity));
+    this.orderItems.push(
+      new OrderItem(
+        item.data.id,
+        item.data.price,
+        quantity,
+        item.volume,
+        item.density
+      )
+    );
   }
 
   private totalWithCoupon(total: number, percentage: number): number {
@@ -32,6 +40,13 @@ class Order {
     return this.coupon?.percentage
       ? this.totalWithCoupon(total, this.coupon.percentage)
       : total;
+  }
+
+  public calculateFreight(distance: number): number {
+    const total: number = this.orderItems.reduce((acc, item) => {
+      return acc + distance * item.totalVolume() * (item.totalDensity() / 100);
+    }, 0);
+    return total <= 10 ? 10 : total;
   }
 }
 
