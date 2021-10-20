@@ -6,7 +6,7 @@
   "scripts": {
     "tsc:init": "tsc --init",
     "build": "tsc",
-    "test": "jest --watch",
+    "test": "jest --watchAll --no-cache --runInBand",
     "test:coverage": "yarn test --coverage"
   },
   "repository": {
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
-    "jest": "^27.2.1",
-    "ts-jest": "^27.0.5"
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.0"
   }
 }
